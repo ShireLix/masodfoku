@@ -89,12 +89,12 @@
             if (discriminant > 0) {
                 let x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
                 let x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-                resultField.textContent = `Két valós gyök létezik: x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
+                resultField.textContent = `Két valós megoldás létezik: x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
             }
             // Ha a diszkrimináns nulla, akkor egyetlen valós gyök létezik
             else if (discriminant === 0) {
                 let x = -b / (2 * a);
-                resultField.textContent = `Egy valós gyök létezik: x = ${x.toFixed(2)}`;
+                resultField.textContent = `Egy valós megoldás létezik: x = ${x.toFixed(2)}`;
             }
             // Ha a diszkrimináns negatív, akkor nincs valós gyök, csak komplex megoldások
             else {
