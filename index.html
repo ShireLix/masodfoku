@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Másodfokú Egyenlet Megoldó</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://wallpapers.com/images/hd/algebra-math-formulas-2lflm9a333aw46wa.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Másodfokú Egyenlet Megoldó</h2>
+        <p>Adja meg a másodfokú egyenlet együtthatóit (a, b, c), és a program kiszámolja a megoldásokat.</p>
+        <img src="https://i.ytimg.com/vi/R7GoCfInyLo/hqdefault.jpg" alt="Másodfokú megoldó képlet" width="300">
+        <input type="number" id="a" placeholder="Add meg az első számot (a)">
+        <input type="number" id="b" placeholder="Add meg a második számot (b)">
+        <input type="number" id="c" placeholder="Add meg a harmadik számot (c)">
+        <button onclick="solveEquation()">Számítás</button>
+        <p class="result" id="result"></p>
+    </div>
+    
+    <script>
+        function solveEquation() {
+            // Az input mezőkből kiolvassuk az értékeket
+            let a = parseFloat(document.getElementById("a").value);
+            let b = parseFloat(document.getElementById("b").value);
+            let c = parseFloat(document.getElementById("c").value);
+            let resultField = document.getElementById("result");
+            
+            // Ellenőrizzük, hogy mindhárom érték szám-e
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                resultField.textContent = "Hiba: Kérlek, adj meg érvényes számokat!";
+                return;
+            }
+            
+            // Ellenőrizzük, hogy az 'a' értéke nem nulla-e, mert különben nem másodfokú egyenlet
+            if (a === 0) {
+                resultField.textContent = "Hiba: Ez nem másodfokú egyenlet, mert a = 0.";
+                return;
+            }
+            
+            // A másodfokú egyenlet diszkriminánsának kiszámítása
+            let discriminant = b * b - 4 * a * c;
+            
+            // Ha a diszkrimináns pozitív, akkor két valós gyök van
+            if (discriminant > 0) {
+                let x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                let x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                resultField.textContent = `Két valós gyök létezik: x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
+            }
+            // Ha a diszkrimináns nulla, akkor egyetlen valós gyök létezik
+            else if (discriminant === 0) {
+                let x = -b / (2 * a);
+                resultField.textContent = `Egy valós gyök létezik: x = ${x.toFixed(2)}`;
+            }
+            // Ha a diszkrimináns negatív, akkor nincs valós gyök, csak komplex megoldások
+            else {
+                resultField.textContent = "Nincs valós megoldás, mert a diszkrimináns negatív.";
+            }
+        }
+    </script>
+</body>
+</html>
